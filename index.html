@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    color:white;
+    background: radial-gradient(circle,#0f2027,#203a43,#2c5364);
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    gap:40px;
+    padding:40px;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero img{
+    width:350px;
+    max-width:100%;
+    border-radius:10px;
+}
+
+/* PRODUCTOS */
+.productos{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.card img{
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background: #000;
+    border-radius: 10px;
+}
+
+.card button{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px;
+    cursor:pointer;
+    width:100%;
+    border-radius:5px;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+}
+
+.modal-content{
+  /*   background:white;
+    color:black;
+    margin:10% auto;
+    padding:20px;
+    width:320px;
+    max-width:90%;
+    border-radius:10px;
+    text-align:center;
+    animation:zoom 0.3s;
+    */
+    background: white;
+    color: black;
+    margin: 5% auto;
+    padding: 20px;
+    width: 320px;
+    max-width: 90%;
+    max-height: 80vh;   /* 🔥 limita altura */
+    overflow-y: auto;   /* 🔥 activa scroll */
+    border-radius: 10px;
+}
+
+@keyframes zoom{
+    from{transform:scale(0.7);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.close{
+    float:right;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.buy-btn{
+    background:#25D366;
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    width:100%;
+    margin-top:10px;
+}
+
+/* 📱 RESPONSIVE */
+@media(max-width:900px){
+    .productos{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .productos{
+        grid-template-columns:1fr;
+    }
+
+    .hero img{
+        width:100%;
+    }
+
+    .modal-content{
+        margin:30% auto;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<img src="img/logo.png">
+<div>
+<h2>Disfruta de tus Apps de Streaming al mejor precio.</h2>
+<p>Para solicitar un servicio solo da clic sobre el botón “Informacio”.</p>
+</div>
+</section>
+
+<section class="productos">
+
+
+<div class="card">
+<img src="img/23.png">
+<p>FlujoTV</p>
+<button class="btn-info" data-name="FlujoTV" data-desc="🔥 Disfrute sin precedentes con la mejor app de televisión en vivo. Compatible con Android ✅ 3 conexiones permitidas ⚽ Incluye Win+ para ver todos los partidos 🌍 Los mejores canales del mundo. 🚀 Requiere al menos 50 Mb de velocidad para un rendimiento óptimo. Disfruta de una gran variedad de contenido VOD (Series y Películas) de distintas plataformas, con actualizaciones semanales, no te pierdas de los mejores estrenos.
+" data-price="$180 MXN">Información</button>
+</div>   
+
+<div class="card">
+<img src="img/1.png">
+<p>Amazon Prime</p>
+<button class="btn-info" data-name="Amazon Prime" data-desc="Amazon Prime Completa
+🎬✨Disfruta de una amplia selección de títulos Amazon Original exclusivos, además de películas y series populares que no te querrás perder. ⚠️Importante: Ten en cuenta que el cambio de clave o de correo anulará la garantía de la cuenta, ⚠️ 🎥 Contenido para todos los gustos 📺5 perfiles 🕒1 mes 📱 Acceso en múltiples dispositivos 🎬" data-price="$90 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/2.png">
+<p>Amazon Prime 1 perfil</p>
+<button class="btn-info" data-name="Amazon Prime 1 perfil" data-desc="🍿¡Sumérgete en el mundo de Amazon Prime Video y disfruta del mejor entretenimiento! 🎉🎥❤️Disfruta de acceso exclusivo a Amazon Original, películas y series populares con una cuenta que incluye 1 perfil personal. ⚠️Cualquier intento de cambiar la clave o el correo anulará la garantía de la cuenta. ⚠️ 🎥 Contenido para todos los gustos📺1 perfil 🕒1 mes 📱 Solo en 1 dispositivo" data-price="$60 MXN">Información</button>
+</div>
+
+<!--
+<div class="card">
+<img src="img/32.png">
+<p>Netflix</p>
+<button class="btn-info" data-name="Netflix" data-desc="🍿Netflix es la plataforma de streaming🍿 que revoluciona la forma en que disfrutas de tus películas y series favoritas, ofreciéndote una experiencia única y personalizada. ¡Tu próxima maratón de series está a solo un clic de distancia! 🎉📱💻📺 🎥 Contenido para todos los gustos📺5 perfiles📺4 conexiones simultaneas 🕒1 mes 📱 Acceso en múltiples dispositivos" data-price="$100 MXN">Información</button>
+</div>
+-->
+
+<div class="card">
+<img src="img/33.png">
+<p>Netflix 1 perfil</p>
+<button class="btn-info" data-name="Netflix 1 perfil" data-desc="¡Comienza a disfrutar de tu entretenimiento favorito de manera rápida y sencilla con Netflix 🎥 Contenido para todos los gustos 📺1 perfil 🕒 1 mes 📱 solo en 1 dispositivo. Esta cuenta es compartida" data-price="$120 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/3.png">
+<p>Disney+ estandar</p>
+<button class="btn-info" data-name="Disney+ estandar" data-desc="🍿Disney+: El Hogar de la Magia 🏰✨Descubre un mundo de entretenimiento mágico con Disney+, la plataforma de streaming que reúne todo el contenido icónico de Disney, Pixar, Marvel, Star Wars, National Geographic y más. 🌈🎊. Con anuncios 🎥 Disfruta de series y películas exclusivas de Disney+ 📺7 perfiles 📺 plan estándar 🕒 1 mes 📱 Acceso en 2 dispositivos en simultaneo, no incluye los canales de ESPN y ESPN3" data-price="$135 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/4.png">
+<p>Disney+ Estandar 1 perfil6</p>
+<button class="btn-info" data-name="Disney+ Estandar 1 perfil" data-desc="🎬 Accede al catálogo completo de Disney+ y disfruta de todas las películas y series de Star (con anuncios) plan básico no permite descargar el contenido. 🔊 Audio envolvente hasta 5.1 📺 Calidad de video en Full HD 1080p. Actualización: no incluyen los canales de ESPN y ESPN3" data-price="$90 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/34.png">
+<p>Max Platino</p>
+<button class="btn-info" data-name="Max Platino" data-desc="Transmite en 4 dispositivos a la vez Transmite en 4K UHD, Dolby Atmos, Dolby Vision y HDR 10 en determinados títulos 100 descargas para ver donde quieras. RENOVABLE" data-price="$200 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/5.png">
+<p>Max Estandar</p>
+<button class="btn-info" data-name="Max Estandar" data-desc="🍿 El plan estándar de Max Streaming ofrece acceso a una amplia variedad de contenido, incluyendo series, películas, documentales y programas exclusivos. Este plan incluye: 2 perfiles personalizados 👤👤 Perfil para niños con contenido seguro y adecuado 👶🎉 Agrega tus títulos favoritos para verlos cuando quieras ⭐🎬 Esta cuenta tiene vigencia de 1 mes" data-price="$150 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/6.png">
+<p>Max 1 perfil</p>
+<button class="btn-info" data-name="Max 1 perfil" data-desc="🍿Max 1 perfil, Con esta cuenta disfrutarás de: 1 perfil en 1 solo dispositivo a la vez 📱💻. Solo se permite 1 conexión simultánea. Si se detectan más conexiones, la cuenta será suspendida y no habrá derecho a reembolso, su plan es básico con anuncios. Vigencia: 1 mes 🗓️" data-price="$85 MXN">Información</button>
+</div>
+
+<!--
+<div class="card">
+<img src="img/7.png">
+<p>Universal+</p>
+<button class="btn-info" data-name="Universal+" data-desc="Universal Plus es un servicio de streaming de NBC Universal que ofrece una amplia variedad de contenido de televisión y cine, incluyendo series de estreno, películas de Hollywood, comedia, crímenes reales y reality shows, junto con contenido on demand. !Advertencia! No agregar pines a los perfiles de la cuenta, disponible en dispositivos móviles y computadoras solo en Colombia." data-price="$100 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/8.png">
+<p>Universal+ 1 perfil</p>
+<button class="btn-info" data-name="Universal+ 1 perfil" data-desc="Universal + 1 perfil
+Universal Plus es un servicio de streaming de NBC Universal que ofrece una amplia variedad de contenido de televisión y cine, incluyendo series de estreno, películas de Hollywood, comedia, crímenes reales y reality shows, junto con contenido on demand. !Advertencia! No agregar pines a los perfiles de la cuenta, " data-price="$100 MXN">Información</button>
+</div>
+-->
+
+<div class="card">
+<img src="img/9.png">
+<p>YouTube Premium</p>
+<button class="btn-info" data-name="YouTube Premium" data-desc="YouTube premium 1 mes. YouTube y YouTube Music sin anuncios, sin conexión y en segundo plano, Mira videos sin interrupciones de anuncios, mientras usas otras apps o con la pantalla bloqueada. Guarda videos para cuando los necesites: en un avión o en el viaje de ida y vuelta al trabajo. Descarga nuestra nueva app de música y escucha contenido sin interrupciones. 1 conexión, el cambio de clave anula la garantia." data-price="$110 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/10.png">
+<p>Deezer Premium</p>
+<button class="btn-info" data-name="Deezer Premium" data-desc="Disfruta este servicio de música en streaming, el cual alberga más de 73.000.000 de canciones con licencia oficial de muchos artistas importantes de todo el mundo. Tiempo de duración 1 mes" data-price="$100 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/11.png">
+<p>Paramount+ Estandar</p>
+<button class="btn-info" data-name="Paramount+ Estandar" data-desc="¡Paramount+ es tu pase al mejor entretenimiento! 🎬🌟 Disfruta de una increíble variedad de películas, series y contenido exclusivo 🎥. Con 2 dispositivos simultáneos 📱💻📺 y 5 perfiles personalizados 👨‍👩‍👧‍👦, toda la familia puede ver lo que más le gusta, ¡al instante! 🚀📲 NO DISPONIBLE EN USA ❌🚫" data-price="$100 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/12.png">
+<p>Paramount+ Estándar 1 perfil</p>
+<button class="btn-info" data-name="Paramount+ Estándar 1 perfil" data-desc="¡Paramount+ es tu pase al mejor entretenimiento! 🎬🌟 Disfruta de una increíble variedad de películas, series y contenido exclusivo 🎥. Con acceso para 1 dispositivo 📱💻 y 1 perfil personalizado 👤, podrás disfrutar de todo el contenido que más te gusta, ¡al instante! 🚀📲 NO DISPONIBLE EN USA ❌🚫" data-price="$55 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/13.png">
+<p>Crunchyroll Mega Fan</p>
+<button class="btn-info" data-name="Crunchyroll Mega Fan" data-desc="Crunchyroll es la plataforma ideal para los amantes del anime 🎬✨. Disfruta de miles de episodios de tus series favoritas, ¡al día con los estrenos más recientes! 📅🔥 Accede a contenido exclusivo y en alta calidad en hasta 3 dispositivos al mismo tiempo 📱💻📺 y con 5 perfiles diferentes 👨‍👩‍👧‍👦. ¡Únete a la comunidad y vive el anime como nunca antes! 🚀" data-price="$90 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/14.png">
+<p>Crunchyroll Mega Fan 1 perfil</p>
+<button class="btn-info" data-name="Crunchyroll Mega Fan 1 perfil" data-desc="Crunchyroll es la plataforma ideal para los amantes del anime 🎬✨. Disfruta de miles de episodios de tus series favoritas, ¡al día con los estrenos más recientes! 📅🔥 Accede a contenido exclusivo y en alta calidad. Con acceso para 1 dispositivo 📱💻 y 1 perfil personalizado." data-price="$50 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/15.png">
+<p>Apple TV</p>
+<button class="btn-info" data-name="Apple TV" data-desc="Disfruta de 3 conexines simultaneas de esta excelente membresía, que cada vez nos tare mejores títulos, ojo solo apple tv. Advertencia: Debe vincular la cuenta como el Apple ID del dispositivo para usarla sin dificultades en dispositivos IOS" data-price="$130 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/16.png">
+<p>Vix+</p>
+<button class="btn-info" data-name="Vix+" data-desc="¡Vix+ te trae lo mejor del entretenimiento en español! 🎥🌟 Disfruta de una increíble selección de series, películas y contenido exclusivo 🎬✨. Accede a tus favoritos en 3 dispositivos al mismo tiempo 📱💻📺 y crea hasta 5 perfiles para que todos en casa disfruten a su gusto 👨‍👩‍👧‍👦. ¡Todo el contenido que amas, cuando quieras y donde quieras! 🚀" data-price="$100 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/17.png">
+<p>Vix+ 1 perfil</p>
+<button class="btn-info" data-name="Vix+ 1 perfil" data-desc="¡Vix+ te trae lo mejor del entretenimiento en español! 🎥🌟 Disfruta de una increíble selección de series, películas y contenido exclusivo 🎬 1 sola conexión." data-price="$70 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/18.png">
+<p>Canva premium 1 mes</p>
+<button class="btn-info" data-name="Canva premium 1 mes" data-desc="Ideal para individuos, emprendedores y diseñadores independientes que buscan acceso a contenido premium para crear diseños increíbles de forma rápida y sencilla, Plan de la cuenta estudiantil ✅ Miles de plantillas y recursos exclusivos ✅ Edición fácil y profesional ✅ Aumenta tu productividad con herramientas avanzadas" data-price="$100 MXN">Información</button>
+</div>
+
+<!--
+<div class="card">
+<img src="img/19.png">
+<p>Viki Rakuten</p>
+<button class="btn-info" data-name="Viki Rakuten" data-desc="🎬 Viki Rakuten Es una plataforma de streaming con dramas y programas de Asia 🌏 📺 Contenido disponible: 🇰🇷 K-Dramas (Corea del Sur) 🇨🇳 C-Dramas (China) 🇯🇵 J-Dramas (Japón) 🇹🇼 Dramas taiwaneses 🎤 Programas de variedades, reality shows y más." data-price="$100 MXN">Información</button>
+</div>
+-->
+
+<div class="card">
+<img src="img/21.png">
+<p>Chat Gpt PLUS 5.1</p>
+<button class="btn-info" data-name="Chat Gpt PLUS 5.1" data-desc="Al comprar la membresia debes reportar la cuenta indicanos el correo al cual quieres que invitemos. luego Revisa tu correo y aceptar invitación 🥳. Para poder usar los beneficios del plus deben ir a chat gpt, iniciar sesión en su cuenta personal y en menu seleccionar ESPACIO DE TRABAJO Por favor revisar y confirmarnos ✅ PROHIBIDO AGREGAR MIEMBROS, LA CUENTA SE BLOQUE" data-price="$300 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/22.png">
+<p>Office 365 x 1 año</p>
+<button class="btn-info" data-name="Office 365 x 1 año" data-desc="Conjunto de aplicaciones y servicios de productividad de Microsoft. Esta suite incluye herramientas para mejorar la comunicación, la colaboración y la productividad. Tiene 6 meses de garantía." data-price="$500 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/30.png">
+<p>Plex Premium</p>
+<button class="btn-info" data-name="Plex Premium" data-desc="🍿Con Plex, la diversión no tiene límites. ¡Transforma tu hogar en un centro de entretenimiento🏡✨ y disfruta al máximo de 4 pantallas! 🎉brindándote una experiencia de streaming versátil y personalizada. 🎥 Contenido para todos los gustos📺3 conexiones simultaneas 🕒 1 mes 📱 Acceso en múltiples dispositivos." data-price="$140 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/29.png">
+<p>Plex Premium 1 Pantalla</p>
+<button class="btn-info" data-name="Plex Premium 1 Pantalla" data-desc="Perfil de Plex para un (1) solo dispositivo, válido únicamente para televisores Smart TV, No funciona en Roku TV. No aplica devolución por error de compra." data-price="$85 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/27.png">
+<p>Jellyfin</p>
+<button class="btn-info" data-name="Jellyfin" data-desc="🍿Diseñada para los verdaderos amantes del cine y la televisión🍿, Jellyfin combina lo mejor del contenido en una experiencia completamente personalizable, libre de restricciones y anuncios. 🎥 Contenido para todos los gustos📺4 Conexiones🕒 1 mes 📱 Acceso en múltiples dispositivos." data-price="$150 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/28.png">
+<p>Jellyfin 1 perfil</p>
+<button class="btn-info" data-name="Jellyfin 1 perfil" data-desc="🍿 Jellyfin es la solución ideal para quienes buscan un sistema de streaming completo 🍿 y personal. Con un solo perfil, tendrás acceso a un mundo de entretenimiento adaptado solo para ti. 🎥 Contenido para todos los gustos 📺 1 Perfil 🕒 1 mes de acceso 📱 Uso en 1 solo dispositivo, 🔒 Importante: Por seguridad, no se entrega la contraseña de la cuenta. La vinculación se realiza únicamente vía WhatsApp para garantizar una conexión segura y personalizada. 📲✨" data-price="$90 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/24.png">
+<p>Interlatins</p>
+<button class="btn-info" data-name="Interlatins" data-desc="Interlatins es un servicio de Streaming, en el cual podras disfrutas de canales de deporte, cine y nacionales 🍿. Cuenta con contenido VOD 🎥(Series y Peliculas)📺 de diferentes plataformas de Streaming. Puede utilizar 3 dispositivos por cuentas, disfrutar del contenido en múltiples dispositivos sin importar el tipo de sistema operativo de su dispositivo." data-price="$150 MXN">Información</button>
+</div>
+
+<div class="card">
+<img src="img/25.png">
+<p>EstellaTV</p>
+<button class="btn-info" data-name="EstellaTV" data-desc="🍿 Disfruta de una calidad de imagen y sonido excepcionales con Stella TV 🍿. Disfruta de una gran variedad de contenido VOD (Peliculas y Series) como de canales en vivo 📺, deporte, cine, nacionales e internacionales. Disponible solo para dispositivos con sistemas operativo Android.📱 Acceso para 3 dispositivos con una cuentas." data-price="$180 MXN">Información</button>
+</div>
+
+
+</section>
+
+<div id="modal" class="modal">
+<div class="modal-content">
+<span class="close">X</span>
+<h2 id="modal-title"></h2>
+<p id="modal-desc"></p>
+<h3 id="modal-price"></h3>
+<button class="buy-btn">Comprar por WhatsApp</button>
+</div>
+</div>
+
+<script>
+const modal = document.getElementById("modal");
+const title = document.getElementById("modal-title");
+const desc = document.getElementById("modal-desc");
+const price = document.getElementById("modal-price");
+const closeBtn = document.querySelector(".close");
+const buyBtn = document.querySelector(".buy-btn");
+let current = {};
+const phone = "7651097163";
+
+document.addEventListener("click", function(e){
+    if(e.target.classList.contains("btn-info")){
+        modal.style.display="block";
+
+        current.name = e.target.dataset.name;
+        current.desc = e.target.dataset.desc;
+        current.price = e.target.dataset.price;
+
+        title.textContent = current.name;
+        desc.textContent = current.desc;
+        price.textContent = current.price;
+    }
+});
+
+closeBtn.onclick = ()=> modal.style.display="none";
+
+window.onclick = (e)=>{
+    if(e.target===modal) modal.style.display="none";
+};
+
+buyBtn.onclick = ()=>{
+    const msg = `Hola, quiero comprar ${current.name} - ${current.price}`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+};
+</script>
+
+</body>
+</html>
